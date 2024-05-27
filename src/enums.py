@@ -7,7 +7,7 @@ class Side(str, Enum):
 
 
 class Currency(str, Enum):
-    EUR = "eur"
+    EUR = "chf"
     USD = "usd"
     CHF = "chf"
 

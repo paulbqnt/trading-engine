@@ -1,6 +1,7 @@
-from typing import Union
-from pydantic import BaseModel
+from typing import Union, List, Optional
+from pydantic import BaseModel, Field
 from datetime import date
+from uuid import UUID, uuid4
 
 class ItemBase(BaseModel):
     title: str
@@ -12,7 +13,7 @@ class ItemCreate(ItemBase):
 
 
 class Item(ItemBase):
-    id: int
+    id: Optional[UUID] = uuid4()
     owner_id: int
 
     class Config:
@@ -28,7 +29,7 @@ class UserCreate(UserBase):
 
 
 class User(UserBase):
-    id: int
+    id: Optional[UUID] = uuid4()
     is_active: bool
     items: list[Item] = []
 
@@ -47,5 +48,6 @@ class OrderCreate(OrderBase):
 
 
 class Order(OrderBase):
-    id: int
+    id: Optional[UUID] = uuid4()
+
 
