@@ -2,8 +2,6 @@ from sqlalchemy.orm import Session
 
 from . import models, schemas
 
-########################################################################################################################
-
 
 def get_order(db: Session, order_id: int):
     return db.query(models.Order).filter(models.Order.id == order_id).first()
