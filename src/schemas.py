@@ -1,23 +1,7 @@
 from typing import Union, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
 from uuid import UUID, uuid4
-
-class ItemBase(BaseModel):
-    title: str
-    description: Union[str, None] = None
-
-
-class ItemCreate(ItemBase):
-    pass
-
-
-class Item(ItemBase):
-    id: Optional[UUID] = uuid4()
-    owner_id: int
-
-    class Config:
-        orm_mode = True
 
 
 class UserBase(BaseModel):
@@ -30,11 +14,11 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: Optional[UUID] = uuid4()
-    is_active: bool
-    items: list[Item] = []
 
-    # class Config:
-    #     orm_mode = True
+    # model_config = ConfigDict(
+    #     arbitrary_types_allowed=True,
+    #     from_attributes=True
+    # )
 
 
 class OrderBase(BaseModel):

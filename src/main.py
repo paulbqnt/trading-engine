@@ -16,7 +16,5 @@ app.include_router(orders.router)
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
-def index(request: Request):
-    return templates.TemplateResponse(
-        "index.html",
-        context={"request": request, "title": "Home Page", "id":"123"})
+def read_root():
+    return "Server is running"
